@@ -102,3 +102,10 @@ dist
 
 # TernJS port file
 .tern-port
+
+#iginorando pasta dos arquivos 
+temp/
+.csv
+imagens
+
+vscode/
