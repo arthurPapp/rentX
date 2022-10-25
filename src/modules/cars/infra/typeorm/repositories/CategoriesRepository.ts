@@ -1,7 +1,7 @@
 import { getRepository, Repository } from 'typeorm';
 
-import { Category } from '../../entities/Category';
-import { ICategoriesRepository, ICreateCategoryDTO } from '../ICategroriesRepository';
+import { ICategoriesRepository, ICreateCategoryDTO } from '../../../repositories/ICategroriesRepository';
+import { Category } from '../entities/Category';
 
 //singleton
 
