@@ -22,7 +22,9 @@ export async function ensureAuthenticated(request:Request, response: Response, n
 
         const userRepository = new UserRepository();
 
-        const user = userRepository.findById(user_id);
+        const user = await userRepository.findById(user_id);
+
+        console.log(user);
         if (!user) {
             throw new AppError("Token missing", 401);
         }
