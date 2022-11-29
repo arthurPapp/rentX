@@ -21,15 +21,14 @@ describe("List Cars", () => {
             brand: "car_brand",
             category_id: "category_id"
         });
-        
+
         const cars = await listAvailableCarsUseCase.execute({});
-        console.log(cars);
         expect(cars).toEqual([car]);
     });
 
     it("should be able to list all available cars by brand", async () => {
-        
-          const car = await carsRepositoryInMemory.create({
+
+        const car = await carsRepositoryInMemory.create({
             name: "Audi A2",
             description: "Carro de luxo",
             daily_reate: 110.11,
@@ -38,15 +37,14 @@ describe("List Cars", () => {
             brand: "testeBrand",
             category_id: "category_id"
         });
-        
-        const cars = await listAvailableCarsUseCase.execute({brand:"testeBrand"});
-        console.log(cars);
+
+        const cars = await listAvailableCarsUseCase.execute({ brand: "testeBrand" });
         expect(cars).toEqual([car]);
     });
 
     it("should be able to list all available cars by name", async () => {
-        
-          const car = await carsRepositoryInMemory.create({
+
+        const car = await carsRepositoryInMemory.create({
             name: "Audi A3",
             description: "Carro de luxo",
             daily_reate: 110.11,
@@ -55,15 +53,14 @@ describe("List Cars", () => {
             brand: "car_brand",
             category_id: "category_id2"
         });
-        
-        const cars = await listAvailableCarsUseCase.execute({name:"Audi A3"});
-        console.log(cars);
+
+        const cars = await listAvailableCarsUseCase.execute({ name: "Audi A3" });
         expect(cars).toEqual([car]);
     });
 
     it("should be able to list all available cars by category_id", async () => {
-        
-          const car = await carsRepositoryInMemory.create({
+
+        const car = await carsRepositoryInMemory.create({
             name: "Audi A4",
             description: "Carro de luxo",
             daily_reate: 110.11,
@@ -72,9 +69,8 @@ describe("List Cars", () => {
             brand: "car_brand_teste",
             category_id: "category_id5"
         });
-        
-        const cars = await listAvailableCarsUseCase.execute({category_id:"category_id5"});
-        console.log(cars);
+
+        const cars = await listAvailableCarsUseCase.execute({ category_id: "category_id5" });
         expect(cars).toEqual([car]);
     });
 });
