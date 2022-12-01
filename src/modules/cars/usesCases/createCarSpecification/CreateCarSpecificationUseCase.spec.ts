@@ -1,7 +1,7 @@
 import { AppError } from '../../../../shared/errors/AppError';
 import { CarsRepositoryInMemory } from '../../repositories/in-memory/CarsRepositoryInMemory';
 import { SpecificationsRepositoryInMemory } from '../../repositories/in-memory/SpecificationsRepositoryInMemory';
-import { CreateCarSpecificationUseCase } from './createCarSpecificationUseCase';
+import { CreateCarSpecificationUseCase } from './CreateCarSpecificationUseCase';
 
 
 
@@ -15,7 +15,7 @@ describe("Create Car Specification", () => {
         specificationsRepositoryInMemory = new SpecificationsRepositoryInMemory();
         createCarSpecificationUseCase = new CreateCarSpecificationUseCase(carsRepositoryInMemory, specificationsRepositoryInMemory);
     });
-   
+
     it("should be able to add a new specification to the car", async () => {
         const car = await carsRepositoryInMemory.create({
             name: "Car name",
@@ -27,7 +27,7 @@ describe("Create Car Specification", () => {
             category_id: "category"
         });
         const especification = await specificationsRepositoryInMemory.create({ name: "teste", description: "teste" });
-        
+
         const specifications_id = [especification.id];
         const specificationsCars = await createCarSpecificationUseCase.execute({ car_id: car.id, specifications_id });
         expect(specificationsCars).toHaveProperty("specifications");
