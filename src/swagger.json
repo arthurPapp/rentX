@@ -14,6 +14,9 @@
                 "tags":["Category"],
                 "summary":"Create a category",
                 "description":"Create a new Category",
+                "security":[
+                    {"bearerAuth":[]}
+                ],
                 "requestBody":{
                     "content":{
                         "application/json":{
@@ -87,6 +90,9 @@
                 "tags":["Category"],
                 "summary":"Upload a category",
                 "description":"Upload a new Category",
+                "security":[
+                    {"bearerAuth":[]}
+                ],
                 "requestBody":{
                     "content":{
                         "multipart/form-data":{
@@ -117,6 +123,9 @@
                 "tags":["Specifications"],
                 "summary":"Create a specification",
                 "description":"Create a new specification",
+                "security":[
+                    {"bearerAuth":[]}
+                ],
                 "requestBody":{
                     "content":{
                         "application/json":{
@@ -127,6 +136,87 @@
                                     "description": "category description example"
                                 }
                             }
+                        }
+                    }
+                },
+                "responses":{
+                    "201":{
+                        "description":"Create"
+                    },
+                    "500":{
+                        "description":"Category already exists"
+                    }
+                }
+            }
+        },
+        "/sessions":{
+            "post":{
+                "tags":["Users"],
+                "sumery":"Authetication User",
+                "description":"Authetication User",
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties":{
+                                    "username":{
+                                        "type":"string"
+                                    },
+                                    "password":{
+                                        "type":"string"
+                                    }
+                                },
+                                "example":{
+                                    "username":"user",
+                                    "password": "231"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"Sucess"
+                    },
+                    "400":{
+                        "description":"Username or password incorret"
+                    }
+                }
+            }
+        },
+        "/cars/images/{id}":{
+            "post":{
+                "tags":["Cars"],
+                "sumery":"Upload images",
+                "description":"Upload images car",
+                "security":[
+                    {"bearerAuth":[]}
+                ],
+                "parameters":[
+                    {
+                        "name":"id",
+                        "in":"path",
+                        "description":"Car id",
+                        "required":true,
+                        "schema":{
+                            "type":"string"
+                        }
+                    }
+                ],
+                "requestBody":{
+                    "content":{
+                        "multipart/form-data":{
+                           "schema" :"object",
+                           "propertie":{
+                            "images": {
+                                "type": "array",
+                                "items":{
+                                    "type":"string",
+                                    "format":"binary"
+                                }
+                            }
+                           }
                         }
                     }
                 },
@@ -151,6 +241,15 @@
                 "description":{
                     "type":"string"
                 }
+            }
+        }
+    },
+    "components":{
+        "securitySchemes":{
+            "bearerAuth":{
+                "type":"http",
+                "scheme":"bearer",
+                "bearerFormat":"JWT"
             }
         }
     }

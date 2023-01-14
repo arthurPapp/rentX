@@ -36,17 +36,25 @@ class DevolutionRentalUseCase {
     //Verificar tempo de aluguel 
     const dateNow = this.dateProvaider.dateNow();
 
-    //compara os dias para verificar se foi entrega antes de 24horas
-    const dailyProvaider = this.dateProvaider.compareInDays(rental.start_date, dateNow);
+    //Diarias corridas - quando o carro saiu e quando o carro voltou
+    let daily = this.dateProvaider.compareInDays(
+      rental.start_date,
+      dateNow
+    )
 
-    let daily = dailyProvaider <= 0 ? minimum_daily : dailyProvaider;
+    daily = daily <= 0 ? minimum_daily : daily;
 
-    const delay = this.dateProvaider.compareInDays(dateNow, rental.expected_return_date);
+    const delay = this.dateProvaider.compareInDays(
+      dateNow,
+      rental.expected_return_date
+    )
 
-    const calculate_fine = delay > 0 ? delay * car.fine_amount : car.fine_amount;
+    if (delay > 0) {
+      const calculate_fine = delay * car.fine_amount;
+      total = calculate_fine;
+    }
 
-
-    total += daily * calculate_fine;
+    total += daily * car.daily_reate;
 
     rental.end_date = this.dateProvaider.dateNow();
     rental.total = total;
