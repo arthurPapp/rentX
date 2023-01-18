@@ -24,6 +24,12 @@ describe("List Category Controller", () => {
         VALUES( '${id}', 'admin','admin@rentx.com.br','${password}', 'admin', true, 'now()', 'XXXXXXX')
         `
     );
+
+    await connection.query(
+      `INSERT INTO categories(id, name, description,  created_at)
+        VALUES( '${id}', 'categoryTeste','testecategoria', 'now()')
+        `
+    );
   });
 
   afterAll(async () => {
