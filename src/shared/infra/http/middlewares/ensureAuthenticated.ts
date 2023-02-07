@@ -13,21 +13,21 @@ interface IPayload {
 export async function ensureAuthenticated(request: Request, response: Response, next: NextFunction) {
 
     const authHeader = request.headers.authorization;
-    const userTokensRepository = new UserTokensRepository();
+    // const userTokensRepository = new UserTokensRepository();
     if (!authHeader) {
         throw new AppError("Token missing", 401);
     }
     const [, token] = authHeader.split(" ");
     try {
-        const { sub: user_id } = verify(token, auth.secret_refresh_token) as IPayload;
+        const { sub: user_id } = verify(token, auth.secret_token) as IPayload;
 
-        const userRepository = new UserRepository();
+        // const userRepository = new UserRepository();
 
-        const user = await userTokensRepository.findByUserIdAndRefreshToken(user_id, token);
+        //const user = await userTokensRepository.findByUserIdAndRefreshToken(user_id, token);
 
-        if (!user) {
-            throw new AppError("Token missing", 401);
-        }
+        // if (!user) {
+        //     throw new AppError("Token missing", 401);
+        // }
 
 
         request.user = {
