@@ -104,7 +104,7 @@ dist
 .tern-port
 
 #iginorando pasta dos arquivos 
-temp/
+tmp/
 .csv
 imagens
 
