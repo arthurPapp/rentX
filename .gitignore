@@ -108,4 +108,5 @@ tmp/
 .csv
 imagens
 
+*.csv
 vscode/
