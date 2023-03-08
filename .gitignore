@@ -110,3 +110,4 @@ imagens
 
 *.csv
 vscode/
+ormconfig.json
