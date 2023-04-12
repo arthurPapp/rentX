@@ -104,8 +104,10 @@ dist
 .tern-port
 
 #iginorando pasta dos arquivos 
-temp/
+tmp/
 .csv
 imagens
 
+*.csv
 vscode/
+ormconfig.json
