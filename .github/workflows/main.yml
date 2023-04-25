@@ -46,4 +46,4 @@ jobs:
             cd ~/app/rentX
             yarn
             ./node_modules/.bin/typeorm migration:run
-            pm2 restart rentx-api
+            pm2 restart rentx_api
