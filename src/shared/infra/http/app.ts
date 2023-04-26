@@ -13,10 +13,14 @@ import swaggerJson from '../../../swagger.json';
 import { AppError } from '../../errors/AppError';
 
 import { router } from './routes';
+import rateLimiter from "./middlewares/rateLimiter";
 import upload from "../../../config/upload";
 
 createConnection();
 const app = express();
+
+app.use(rateLimiter);
+
 app.use(express.json());
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerJson));
